@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ConsoCNSSModelStoreContainer" CdmEntityContainer="ConsoCNSSEntities">
+    <EntitySetMapping Name="Importation_PR">
+      <EntityTypeMapping TypeName="ConsoCNSSModel.Importation_PR">
+        <MappingFragment StoreEntitySet="Importation_PR">
+          <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+          <ScalarProperty Name="Code_Entite" ColumnName="Code_Entite" />
+          <ScalarProperty Name="Date_Importation" ColumnName="Date_Importation" />
+          <ScalarProperty Name="Mois" ColumnName="Mois" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+          <ScalarProperty Name="Type_Peche" ColumnName="Type_Peche" />
+          <ScalarProperty Name="Code_Correspondance" ColumnName="Code_Correspondance" />
+          <ScalarProperty Name="Desig_Correspondance" ColumnName="Desig_Correspondance" />
+          <ScalarProperty Name="Num_Envoi" ColumnName="Num_Envoi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prelevements_Consolides">
+      <EntityTypeMapping TypeName="ConsoCNSSModel.Prelevements_Consolides">
+        <MappingFragment StoreEntitySet="Prelevements_Consolides">
+          <ScalarProperty Name="Id_PC" ColumnName="Id_PC" />
+          <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+          <ScalarProperty Name="Date_Exploitation" ColumnName="Date_Exploitation" />
+          <ScalarProperty Name="Code_Bateau" ColumnName="Code_Bateau" />
+          <ScalarProperty Name="Nom_Bateau" ColumnName="Nom_Bateau" />
+          <ScalarProperty Name="Type_Bateau" ColumnName="Type_Bateau" />
+          <ScalarProperty Name="Num_Declaration" ColumnName="Num_Declaration" />
+          <ScalarProperty Name="Mnt_Vente" ColumnName="Mnt_Vente" />
+          <ScalarProperty Name="Mnt_Brut_Operation" ColumnName="Mnt_Brut_Operation" />
+          <ScalarProperty Name="Mnt_COM" ColumnName="Mnt_COM" />
+          <ScalarProperty Name="Mnt_TVA" ColumnName="Mnt_TVA" />
+          <ScalarProperty Name="Mnt_Net_Operation" ColumnName="Mnt_Net_Operation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reglements_Consolides">
+      <EntityTypeMapping TypeName="ConsoCNSSModel.Reglements_Consolides">
+        <MappingFragment StoreEntitySet="Reglements_Consolides">
+          <ScalarProperty Name="Id_Reg" ColumnName="Id_Reg" />
+          <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+          <ScalarProperty Name="Num_OV" ColumnName="Num_OV" />
+          <ScalarProperty Name="Banque" ColumnName="Banque" />
+          <ScalarProperty Name="Agence" ColumnName="Agence" />
+          <ScalarProperty Name="Mnt_OV" ColumnName="Mnt_OV" />
+          <ScalarProperty Name="Date_OV" ColumnName="Date_OV" />
+          <ScalarProperty Name="Num_Envoi_Prelevement" ColumnName="Num_Envoi_Prelevement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

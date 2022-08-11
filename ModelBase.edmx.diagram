@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="149313195b9e40c492790d2fd8491e70" Name="Diagram1">
+        <EntityTypeShape EntityType="ConsoCNSSModel.Importation_PR" Width="1.5" PointX="3.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConsoCNSSModel.Prelevements_Consolides" Width="1.5" PointX="7" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConsoCNSSModel.Reglements_Consolides" Width="1.5" PointX="1.125" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="ConsoCNSSModel.FK_Prelevements_Consolides_Importation_PR" ManuallyRouted="false" />
+        <AssociationConnector Association="ConsoCNSSModel.FK_Reglements_Consolides_Importation_PR" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ConsoCNSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Importation_PR">
+          <Key>
+            <PropertyRef Name="Id_Imp" />
+          </Key>
+          <Property Name="Id_Imp" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_Entite" Type="nvarchar(max)" />
+          <Property Name="Date_Importation" Type="date" />
+          <Property Name="Mois" Type="nvarchar" MaxLength="50" />
+          <Property Name="Annee" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type_Peche" Type="nvarchar(max)" />
+          <Property Name="Code_Correspondance" Type="nvarchar(max)" />
+          <Property Name="Desig_Correspondance" Type="nvarchar(max)" />
+          <Property Name="Num_Envoi" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Prelevements_Consolides">
+          <Key>
+            <PropertyRef Name="Id_PC" />
+          </Key>
+          <Property Name="Id_PC" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Imp" Type="bigint" />
+          <Property Name="Date_Exploitation" Type="date" />
+          <Property Name="Code_Bateau" Type="nvarchar(max)" />
+          <Property Name="Nom_Bateau" Type="nvarchar(max)" />
+          <Property Name="Type_Bateau" Type="nvarchar(max)" />
+          <Property Name="Num_Declaration" Type="nvarchar(max)" />
+          <Property Name="Mnt_Vente" Type="float" />
+          <Property Name="Mnt_Brut_Operation" Type="float" />
+          <Property Name="Mnt_COM" Type="float" />
+          <Property Name="Mnt_TVA" Type="float" />
+          <Property Name="Mnt_Net_Operation" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reglements_Consolides">
+          <Key>
+            <PropertyRef Name="Id_Reg" />
+          </Key>
+          <Property Name="Id_Reg" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Imp" Type="bigint" />
+          <Property Name="Num_OV" Type="nvarchar(max)" />
+          <Property Name="Banque" Type="nvarchar(max)" />
+          <Property Name="Agence" Type="nvarchar(max)" />
+          <Property Name="Mnt_OV" Type="float" />
+          <Property Name="Date_OV" Type="date" />
+          <Property Name="Num_Envoi_Prelevement" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Prelevements_Consolides_Importation_PR">
+          <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+          <End Role="Prelevements_Consolides" Type="Self.Prelevements_Consolides" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Importation_PR">
+              <PropertyRef Name="Id_Imp" />
+            </Principal>
+            <Dependent Role="Prelevements_Consolides">
+              <PropertyRef Name="Id_Imp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reglements_Consolides_Importation_PR">
+          <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+          <End Role="Reglements_Consolides" Type="Self.Reglements_Consolides" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Importation_PR">
+              <PropertyRef Name="Id_Imp" />
+            </Principal>
+            <Dependent Role="Reglements_Consolides">
+              <PropertyRef Name="Id_Imp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConsoCNSSModelStoreContainer">
+          <EntitySet Name="Importation_PR" EntityType="Self.Importation_PR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prelevements_Consolides" EntityType="Self.Prelevements_Consolides" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reglements_Consolides" EntityType="Self.Reglements_Consolides" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Prelevements_Consolides_Importation_PR" Association="Self.FK_Prelevements_Consolides_Importation_PR">
+            <End Role="Importation_PR" EntitySet="Importation_PR" />
+            <End Role="Prelevements_Consolides" EntitySet="Prelevements_Consolides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reglements_Consolides_Importation_PR" Association="Self.FK_Reglements_Consolides_Importation_PR">
+            <End Role="Importation_PR" EntitySet="Importation_PR" />
+            <End Role="Reglements_Consolides" EntitySet="Reglements_Consolides" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConsoCNSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Importation_PR">
+          <Key>
+            <PropertyRef Name="Id_Imp" />
+          </Key>
+          <Property Name="Id_Imp" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Entite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Importation" Type="DateTime" Precision="0" />
+          <Property Name="Mois" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Annee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Peche" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Code_Correspondance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Desig_Correspondance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Num_Envoi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Prelevements_Consolides" Relationship="Self.FK_Prelevements_Consolides_Importation_PR" FromRole="Importation_PR" ToRole="Prelevements_Consolides" />
+          <NavigationProperty Name="Reglements_Consolides" Relationship="Self.FK_Reglements_Consolides_Importation_PR" FromRole="Importation_PR" ToRole="Reglements_Consolides" />
+        </EntityType>
+        <EntityType Name="Prelevements_Consolides">
+          <Key>
+            <PropertyRef Name="Id_PC" />
+          </Key>
+          <Property Name="Id_PC" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Imp" Type="Int64" />
+          <Property Name="Date_Exploitation" Type="DateTime" Precision="0" />
+          <Property Name="Code_Bateau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nom_Bateau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type_Bateau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Num_Declaration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mnt_Vente" Type="Double" />
+          <Property Name="Mnt_Brut_Operation" Type="Double" />
+          <Property Name="Mnt_COM" Type="Double" />
+          <Property Name="Mnt_TVA" Type="Double" />
+          <Property Name="Mnt_Net_Operation" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Importation_PR" Relationship="Self.FK_Prelevements_Consolides_Importation_PR" FromRole="Prelevements_Consolides" ToRole="Importation_PR" />
+        </EntityType>
+        <EntityType Name="Reglements_Consolides">
+          <Key>
+            <PropertyRef Name="Id_Reg" />
+          </Key>
+          <Property Name="Id_Reg" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Imp" Type="Int64" />
+          <Property Name="Num_OV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Banque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Agence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mnt_OV" Type="Double" />
+          <Property Name="Date_OV" Type="DateTime" Precision="0" />
+          <Property Name="Num_Envoi_Prelevement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Importation_PR" Relationship="Self.FK_Reglements_Consolides_Importation_PR" FromRole="Reglements_Consolides" ToRole="Importation_PR" />
+        </EntityType>
+        <Association Name="FK_Prelevements_Consolides_Importation_PR">
+          <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+          <End Role="Prelevements_Consolides" Type="Self.Prelevements_Consolides" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Importation_PR">
+              <PropertyRef Name="Id_Imp" />
+            </Principal>
+            <Dependent Role="Prelevements_Consolides">
+              <PropertyRef Name="Id_Imp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reglements_Consolides_Importation_PR">
+          <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+          <End Role="Reglements_Consolides" Type="Self.Reglements_Consolides" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Importation_PR">
+              <PropertyRef Name="Id_Imp" />
+            </Principal>
+            <Dependent Role="Reglements_Consolides">
+              <PropertyRef Name="Id_Imp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConsoCNSSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Importation_PR" EntityType="Self.Importation_PR" />
+          <EntitySet Name="Prelevements_Consolides" EntityType="Self.Prelevements_Consolides" />
+          <EntitySet Name="Reglements_Consolides" EntityType="Self.Reglements_Consolides" />
+          <AssociationSet Name="FK_Prelevements_Consolides_Importation_PR" Association="Self.FK_Prelevements_Consolides_Importation_PR">
+            <End Role="Importation_PR" EntitySet="Importation_PR" />
+            <End Role="Prelevements_Consolides" EntitySet="Prelevements_Consolides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reglements_Consolides_Importation_PR" Association="Self.FK_Reglements_Consolides_Importation_PR">
+            <End Role="Importation_PR" EntitySet="Importation_PR" />
+            <End Role="Reglements_Consolides" EntitySet="Reglements_Consolides" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConsoCNSSModelStoreContainer" CdmEntityContainer="ConsoCNSSEntities">
+          <EntitySetMapping Name="Importation_PR">
+            <EntityTypeMapping TypeName="ConsoCNSSModel.Importation_PR">
+              <MappingFragment StoreEntitySet="Importation_PR">
+                <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+                <ScalarProperty Name="Code_Entite" ColumnName="Code_Entite" />
+                <ScalarProperty Name="Date_Importation" ColumnName="Date_Importation" />
+                <ScalarProperty Name="Mois" ColumnName="Mois" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="Type_Peche" ColumnName="Type_Peche" />
+                <ScalarProperty Name="Code_Correspondance" ColumnName="Code_Correspondance" />
+                <ScalarProperty Name="Desig_Correspondance" ColumnName="Desig_Correspondance" />
+                <ScalarProperty Name="Num_Envoi" ColumnName="Num_Envoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prelevements_Consolides">
+            <EntityTypeMapping TypeName="ConsoCNSSModel.Prelevements_Consolides">
+              <MappingFragment StoreEntitySet="Prelevements_Consolides">
+                <ScalarProperty Name="Id_PC" ColumnName="Id_PC" />
+                <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+                <ScalarProperty Name="Date_Exploitation" ColumnName="Date_Exploitation" />
+                <ScalarProperty Name="Code_Bateau" ColumnName="Code_Bateau" />
+                <ScalarProperty Name="Nom_Bateau" ColumnName="Nom_Bateau" />
+                <ScalarProperty Name="Type_Bateau" ColumnName="Type_Bateau" />
+                <ScalarProperty Name="Num_Declaration" ColumnName="Num_Declaration" />
+                <ScalarProperty Name="Mnt_Vente" ColumnName="Mnt_Vente" />
+                <ScalarProperty Name="Mnt_Brut_Operation" ColumnName="Mnt_Brut_Operation" />
+                <ScalarProperty Name="Mnt_COM" ColumnName="Mnt_COM" />
+                <ScalarProperty Name="Mnt_TVA" ColumnName="Mnt_TVA" />
+                <ScalarProperty Name="Mnt_Net_Operation" ColumnName="Mnt_Net_Operation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reglements_Consolides">
+            <EntityTypeMapping TypeName="ConsoCNSSModel.Reglements_Consolides">
+              <MappingFragment StoreEntitySet="Reglements_Consolides">
+                <ScalarProperty Name="Id_Reg" ColumnName="Id_Reg" />
+                <ScalarProperty Name="Id_Imp" ColumnName="Id_Imp" />
+                <ScalarProperty Name="Num_OV" ColumnName="Num_OV" />
+                <ScalarProperty Name="Banque" ColumnName="Banque" />
+                <ScalarProperty Name="Agence" ColumnName="Agence" />
+                <ScalarProperty Name="Mnt_OV" ColumnName="Mnt_OV" />
+                <ScalarProperty Name="Date_OV" ColumnName="Date_OV" />
+                <ScalarProperty Name="Num_Envoi_Prelevement" ColumnName="Num_Envoi_Prelevement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ConsoCNSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Importation_PR">
+    <Key>
+      <PropertyRef Name="Id_Imp" />
+    </Key>
+    <Property Name="Id_Imp" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code_Entite" Type="nvarchar(max)" />
+    <Property Name="Date_Importation" Type="date" />
+    <Property Name="Mois" Type="nvarchar" MaxLength="50" />
+    <Property Name="Annee" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type_Peche" Type="nvarchar(max)" />
+    <Property Name="Code_Correspondance" Type="nvarchar(max)" />
+    <Property Name="Desig_Correspondance" Type="nvarchar(max)" />
+    <Property Name="Num_Envoi" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Prelevements_Consolides">
+    <Key>
+      <PropertyRef Name="Id_PC" />
+    </Key>
+    <Property Name="Id_PC" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Imp" Type="bigint" />
+    <Property Name="Date_Exploitation" Type="date" />
+    <Property Name="Code_Bateau" Type="nvarchar(max)" />
+    <Property Name="Nom_Bateau" Type="nvarchar(max)" />
+    <Property Name="Type_Bateau" Type="nvarchar(max)" />
+    <Property Name="Num_Declaration" Type="nvarchar(max)" />
+    <Property Name="Mnt_Vente" Type="float" />
+    <Property Name="Mnt_Brut_Operation" Type="float" />
+    <Property Name="Mnt_COM" Type="float" />
+    <Property Name="Mnt_TVA" Type="float" />
+    <Property Name="Mnt_Net_Operation" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reglements_Consolides">
+    <Key>
+      <PropertyRef Name="Id_Reg" />
+    </Key>
+    <Property Name="Id_Reg" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Imp" Type="bigint" />
+    <Property Name="Num_OV" Type="nvarchar(max)" />
+    <Property Name="Banque" Type="nvarchar(max)" />
+    <Property Name="Agence" Type="nvarchar(max)" />
+    <Property Name="Mnt_OV" Type="float" />
+    <Property Name="Date_OV" Type="date" />
+    <Property Name="Num_Envoi_Prelevement" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Prelevements_Consolides_Importation_PR">
+    <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+    <End Role="Prelevements_Consolides" Type="Self.Prelevements_Consolides" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Importation_PR">
+        <PropertyRef Name="Id_Imp" />
+      </Principal>
+      <Dependent Role="Prelevements_Consolides">
+        <PropertyRef Name="Id_Imp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reglements_Consolides_Importation_PR">
+    <End Role="Importation_PR" Type="Self.Importation_PR" Multiplicity="0..1" />
+    <End Role="Reglements_Consolides" Type="Self.Reglements_Consolides" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Importation_PR">
+        <PropertyRef Name="Id_Imp" />
+      </Principal>
+      <Dependent Role="Reglements_Consolides">
+        <PropertyRef Name="Id_Imp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ConsoCNSSModelStoreContainer">
+    <EntitySet Name="Importation_PR" EntityType="Self.Importation_PR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prelevements_Consolides" EntityType="Self.Prelevements_Consolides" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reglements_Consolides" EntityType="Self.Reglements_Consolides" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Prelevements_Consolides_Importation_PR" Association="Self.FK_Prelevements_Consolides_Importation_PR">
+      <End Role="Importation_PR" EntitySet="Importation_PR" />
+      <End Role="Prelevements_Consolides" EntitySet="Prelevements_Consolides" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reglements_Consolides_Importation_PR" Association="Self.FK_Reglements_Consolides_Importation_PR">
+      <End Role="Importation_PR" EntitySet="Importation_PR" />
+      <End Role="Reglements_Consolides" EntitySet="Reglements_Consolides" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

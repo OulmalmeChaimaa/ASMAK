@@ -1,0 +1,17 @@
+﻿@*@model lecture_fichier.Models.liste_recherche*@
+@using lecture_fichier.Models
+@if (Model.listRech.Count != 0)
+{
+    foreach (receherche_critere r in Model.listRech)
+    {
+        <tr>
+            <td>@r.Id_Imp</td>
+            <td>@r.Code_Entite</td>
+            <td>@r.Date_Importation</td>
+            <td>@r.Code_Bateau</td>
+            <td>@r.Banque</td>
+
+        </tr>
+
+    }
+}

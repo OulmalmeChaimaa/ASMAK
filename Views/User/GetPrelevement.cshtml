@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('#table_id').DataTable();
+        });</script>
+
+
+</head>
+<body>
+    <b>@ViewBag.test</b> <br />
+    <b>@ViewBag.test2 </b>
+
+    <table id="table_id">
+        <thead>
+            <tr>
+                <th>Date_Exploitation</th>
+                <th>Code_Bateau</th>
+                <th>Nom_Bateau</th>
+                <th>Type_Bateau</th>
+                <th>Num_Declaration</th>
+                <th>Mnt_Vente</th>
+                <th>Mnt_Brut_Operation</th>
+                <th>Mnt_TVA</th>
+                <th>Mnt_COM</th>
+                <th>Mnt_Net_Operation</th>
+
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (Prelevements_Consolides p in Model.listPrelv)
+                {
+                    <tr>
+                        <td>@p.Date_Exploitation</td>
+                        <td>@p.Code_Bateau</td>
+                        <td>@p.Nom_Bateau</td>
+                        <td>@p.Type_Bateau</td>
+                        <td>@p.Num_Declaration</td>
+                        <td>@p.Mnt_Vente</td>
+                        <td>@p.Mnt_Net_Operation</td>
+                        <td>@p.Mnt_TVA</td>
+                        <td>@p.Mnt_COM</td>
+                        <td>@p.Mnt_Net_Operation</td>
+
+
+
+                    </tr>
+
+                }
+        </tbody>
+    </table>
+</body>
+</html>

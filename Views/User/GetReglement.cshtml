@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "GetReglement";
+}
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('#table_id').DataTable();
+        });</script>
+
+
+</head>
+<body>
+    <b>@ViewBag.test</b> <br />
+    <b>@ViewBag.test2 </b>
+
+    <table id="table_id">
+        <thead>
+            <tr>
+                <th>Num_OV</th>
+                <th>Banque</th>
+                <th>Agence</th>
+                <th>Mnt_OV</th>
+                <th>Date_OV</th>
+                <th>Num_Envoi_Prelevement</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Reglements_Consolides r in Model.listReg)
+            {
+            <tr>
+                <td>@r.Num_OV</td>
+                <td>@r.Banque</td>
+                <td>@r.Agence</td>
+                <td>@r.Mnt_OV</td>
+                <td>@r.Date_OV</td>
+                <td>@r.Num_Envoi_Prelevement</td>
+
+
+
+            </tr>
+
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+
